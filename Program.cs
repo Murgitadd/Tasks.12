@@ -5,7 +5,7 @@ class Program
         bool check = true;
         Car myCar = new Car();
 
-        Console.WriteLine("Remaining Fuel is " + myCar.GetFuel() + " liters");
+        Console.WriteLine("Remaining Fuel is " + myCar.Fuel + " liters");
         Console.WriteLine("Total capacity is " + myCar.TankCapacity + " liters");
         Console.WriteLine("Fuel consumed per kilometer is " + myCar.FuelConsumption + " liters");
 
@@ -43,10 +43,10 @@ class Program
                     break;
                 case "2":
                     Console.Write("How much fuel do you want to add? ");
-                    if (double.TryParse(Console.ReadLine(), out double fuelToAdd))
+                    if (double.TryParse(Console.ReadLine(), out double refueled))
                     {
-                        myCar.Refuel(fuelToAdd);
-                        Console.WriteLine("Fuel added. Current fuel: " + myCar.GetFuel() + " liters");
+                        myCar.Refuel(refueled);
+                        Console.WriteLine("Fuel added. Current fuel: " + myCar.Fuel + " liters");
                     }
                     else
                     {
@@ -54,10 +54,10 @@ class Program
                     }
                     break;
                 case "3":
-                    Console.WriteLine("Current Fuel: " + myCar.GetFuel() + " liters");
+                    Console.WriteLine("Current Fuel: " + myCar.Fuel + " liters");
                     break;
                 case "4":
-                    Console.WriteLine("Distance Traveled: " + myCar.GetMileage() + " km");
+                    Console.WriteLine("Distance Traveled: " + myCar.MileAge + " km");
                     break;
                 case "5":
                     check = false;
@@ -65,6 +65,7 @@ class Program
                 default:
                     Console.WriteLine("Invalid choice. Please select a valid option.");
                     break;
+
             }
         }
 
