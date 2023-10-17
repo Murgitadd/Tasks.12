@@ -1,17 +1,4 @@
-/*
- * Created by SharpDevelop.
- * User: HP
- * Date: 16.10.2023
- * Time: 23:50
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
-using System.Collections.Generic;
-
-namespace carfuel
-{
-			internal class Car : IVehicle
+internal class Car : IVehicle
 {
     public double MileAge { get; set; }
     public double Fuel { get; set; }
@@ -25,39 +12,47 @@ namespace carfuel
         TankCapacity = tankCapacity;
     }
 
-    public bool Drive(double kilometers)
+    public bool Drive(double kilometer)
     {
-        double requiredFuel = kilometers * FuelConsumption / 100;
+        double requiredFuel = kilometer * FuelConsumption / 100;
         if (requiredFuel <= Fuel)
         {
             Fuel -= requiredFuel;
-            MileAge += kilometers;
+            MileAge += kilometer;
             return true;
         }
         return false;
     }
 
-    public void Refuel(double amount)
+    public void Refuel(double refueled)
     {
-        if (amount > 0)
+        if (Fuel + refueled <= TankCapacity)
         {
-            Fuel += amount;
-            if (Fuel > TankCapacity)
-            {
-                Fuel = TankCapacity; 
-            }
+            Fuel += refueled;
+        }
+        else
+        {
+            Fuel = TankCapacity;
         }
     }
 
-    public double GetFuel()
+    public void Distance()
     {
-        return Fuel;
-    }
-
-    public double GetMileage()
-    {
-        return MileAge;
+        
     }
 }
+
+interface IDrivable
+{
+    bool Drive(double kilometer);
+}
+
+interface IRefuellable
+{
+    void Refuel(double refueled);
+}
+
+interface IVehicle : IRefuellable, IDrivable
+{
 
 }
